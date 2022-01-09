@@ -1,5 +1,7 @@
 import click
 
+from meme_bot.use_cases.post_message import PostMessageUseCase
+
 
 @click.group()
 def main():
@@ -8,9 +10,8 @@ def main():
 
 @main.add_command
 @click.command()
-@click.argument('channel', required=True)
-@click.argument('message', required=True)
+@click.argument("channel", required=True)
+@click.argument("message", required=True)
 def post_message(channel, message):
-    click.echo('post-message')
-    click.echo(f'channel={channel}')
-    click.echo(f'message={message}')
+    uc = PostMessageUseCase()
+    res = uc.execute()
